@@ -1,40 +1,35 @@
-use std::io;
-use rand::Rng;
-fn send_btc(){
-    println!("Lets send BTC");
+struct Object {
+    width:u32,
+    height:u32
 }
 
-fn recieve_btc(){
-    println!("Lets recieve BTC");
-    let number = rand::thread_rng().gen_range(1,10);
-    println!("Recived BTC is {}",number);
+//methods
+impl Object {
 
-}
-
-fn ganja(){
-    println!("invalid jojo");
-}
-
-fn send_recieveBTC(){
-
-    println!("\n Letts have fun with BTC \n");
-
-    println!("Do you wanna send (s) or recieve (r) bitcoin");
-
-    let mut command = String::new();
-    io::stdin().read_line(&mut command);
-    if command.trim().eq("s"){
-        send_btc()
+    fn area(&self) -> u32 {
+        self.width * self.height
     }
-    else if command.trim().eq("r")
-    {
-        recieve_btc()
+    fn show(&self) {
+        println!("area is {} {} {}",self.width, self.height, self.area())
     }
-    else{
-        ganja()
+}
+// Related Functions
+impl Object {
+    fn new(width:u32,height:u32)-> Object {
+        Object {
+            width,
+            height
+        }
     }
 }
 
-fn main() {
-    send_recieveBTC()
+fn main(){
+    let o = Object {
+        width: 10,
+        height: 20
+    };
+
+    o.show();
+    let obj = Object :: new(2,3);
+    obj.show();
 }
